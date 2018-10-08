@@ -19,8 +19,8 @@ public class DeliveryManagerPage extends JFrame {
 		ownerViewButton = new JButton();
 		clientViewButton = new JButton();
 		
-		ownerViewButton.setText("Use as owner.");
-		clientViewButton.setText("Use as client.");
+		ownerViewButton.setText("Use as owner");
+		clientViewButton.setText("Use as client");
 		
 		ownerViewButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {

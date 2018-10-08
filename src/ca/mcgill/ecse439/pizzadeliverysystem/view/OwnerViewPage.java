@@ -10,76 +10,77 @@ import javax.swing.SwingConstants;
 public class OwnerViewPage extends JFrame {
 
 	private static final long serialVersionUID = -8310350604453967420L;
-	
+
 	private boolean hasLoggedIn = false;
 	private String account = "admin", password = "admin";
-	
+
 	// for login page
 	private JLabel loginLabel;
 	private JTextField loginAccountField, loginPasswordField;
 	private JButton loginButton;
-	
+
 	// for operating page
 	private JButton viewMenuButton, updateMenuButton;
-	
+
 	public OwnerViewPage() {
-		initComponentsLogIn();
+		if (!hasLoggedIn) {
+			initComponentsLogIn();
+		} else {
+			initComponentsOperations();
+		}
 	}
-	
+
 	private void initComponentsLogIn() {
-		
+
 		loginLabel = new JLabel();
 		loginAccountField = new JTextField();
 		loginPasswordField = new JTextField();
 		loginButton = new JButton();
-		
+
 		loginLabel.setText("Enter your username and password.");
 		loginAccountField.setText("                              ");
 		loginPasswordField.setText("                              ");
-		loginButton.setText("Log in !");
+		loginButton.setText("Log in");
 		
+		setSize(500, 100);
+
 		loginButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				if (correctCredentials(loginAccountField, loginPasswordField)) {
+					hasLoggedIn = true;
+					remove(loginLabel);
+					remove(loginAccountField);
+					remove(loginPasswordField);
+					remove(loginButton);
 					initComponentsOperations();
 				}
 			}
 		});
-		
+
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		
 		layout.setHorizontalGroup(layout.createSequentialGroup()
-				.addGroup(layout.createParallelGroup()
-						.addComponent(loginLabel)
-						.addComponent(loginAccountField))
-				.addGroup(layout.createParallelGroup()
-						.addComponent(loginPasswordField)
-						.addComponent(loginButton))
+				.addGroup(layout.createParallelGroup().addComponent(loginLabel).addComponent(loginAccountField))
+				.addGroup(layout.createParallelGroup().addComponent(loginLabel).addComponent(loginPasswordField))
+				.addGroup(layout.createParallelGroup().addComponent(loginLabel).addComponent(loginButton)));
+		
+		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(loginLabel)
+				.addGroup(layout.createParallelGroup().addComponent(loginAccountField).addComponent(loginPasswordField).addComponent(loginButton))
 				);
-		
-		layout.setVerticalGroup(layout.createSequentialGroup()
-				.addComponent(loginLabel)
-				.addGroup(layout.createParallelGroup()
-						.addComponent(loginAccountField)
-						.addComponent(loginPasswordField))
-				.addComponent(loginButton)
-				);
-		
-		layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[] {loginAccountField, loginPasswordField});
-		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {loginAccountField, loginPasswordField});
-		
-		pack();
+
+		layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[] { loginAccountField, loginPasswordField });
+		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] { loginAccountField, loginPasswordField });
 	}
-	
+
 	private void initComponentsOperations() {
-		
+
 		viewMenuButton = new JButton();
 		updateMenuButton = new JButton();
-		
+
 		viewMenuButton.setText("View menu.");
 		updateMenuButton.setText("Update menu.");
-		
+
 		viewMenuButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setVisible(false);
@@ -88,28 +89,32 @@ public class OwnerViewPage extends JFrame {
 			}
 		});
 		
+		final OwnerViewPage ovp = this;
+
 		updateMenuButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setVisible(false);
-				UpdateMenuPage ump = new UpdateMenuPage();
+				UpdateMenuPage ump = new UpdateMenuPage(ovp);
 				ump.setVisible(true);
 			}
 		});
-		
+
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		
-		layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(viewMenuButton).addComponent(updateMenuButton));
-		layout.setVerticalGroup(layout.createParallelGroup().addComponent(viewMenuButton).addComponent(updateMenuButton));
-		
+
+		layout.setHorizontalGroup(
+				layout.createSequentialGroup().addComponent(viewMenuButton).addComponent(updateMenuButton));
+		layout.setVerticalGroup(
+				layout.createParallelGroup().addComponent(viewMenuButton).addComponent(updateMenuButton));
+
 		pack();
-		
+
 	}
-	
+
 	private boolean correctCredentials(JTextField acc, JTextField pass) {
 		boolean validAcc = acc.getText().trim().equals(account);
 		boolean validPass = pass.getText().trim().equals(password);
 		return validAcc && validPass;
 	}
-	
+
 }

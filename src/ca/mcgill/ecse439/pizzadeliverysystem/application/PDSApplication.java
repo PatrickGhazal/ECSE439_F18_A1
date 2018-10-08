@@ -7,7 +7,7 @@ import ca.mcgill.ecse439.pizzadeliverysystem.view.DeliveryManagerPage;
 public class PDSApplication {
 	
 	private static DeliveryManager dm;
-	private static String filename = "data.dm";
+	private static String filename = "src/output";
 	
 	public static void main(String[] args) {
 		// start UI

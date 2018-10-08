@@ -24,12 +24,12 @@ public class PDSController {
 		}
 	}
 
-	public static void updateMenuPizza(String oldName, String newName, int oldCalCount, int newCalCount, int oldPrice,
-			int newPrice) throws InvalidInputException {
+	public static void updateMenuPizza(String oldName, String newName, int newCalCount, int newPrice)
+			throws InvalidInputException {
 		dm = PDSApplication.getDM();
 		try {
 			for (Pizza p : dm.getMenu().getPizzas()) {
-				if (p.getName().equals(oldName) && p.getCalorieCount() == oldCalCount && p.getPrice() == oldPrice) {
+				if (p.getName().equals(oldName)) {
 					p.setName(newName);
 					p.setCalorieCount(newCalCount);
 					p.setPrice(newPrice);
