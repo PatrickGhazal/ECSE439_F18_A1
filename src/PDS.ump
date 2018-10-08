@@ -1,0 +1,91 @@
+namespace ca.mcgill.ecse439.pizzadeliverysystem.model;
+
+class Pizza
+{
+  name;
+  Integer calorieCount;
+  Integer price;
+
+  1 -> * Ingredient;
+  
+  before constructor {
+  	if (aName == null || aName.trim().equals("")) {
+  		throw new RuntimeException("Please provide a valid name.");
+  	}
+  	if (aCalorieCount <= 0) {
+  		throw new RuntimeException("Please provide a valid calorie count (non-zero positive integer).");
+  	}
+  	if (aPrice <= 0) {
+  		throw new RuntimeException("Please provide a valid price (non-zero positive integer).");
+  	}
+  }
+  
+  before setName {
+  	if (aName == null || aName.trim().equals("")) {
+  		return false;
+  	}
+  }
+  before setCalorieCount {
+  	if (aCalorieCount <= 0) {
+  		return false;
+  	}
+  }
+  before setPrice {
+  	if (aPrice <= 0) {
+  		return false;
+  	}
+  }
+}
+
+class MenuPizza
+{
+  isA Pizza;
+}
+
+class CustomPizza
+{
+  isA Pizza;
+  Integer basePrice;
+}
+
+class Ingredient
+{
+  name;
+  Integer price;
+}
+
+class Customer
+{
+  name;
+  delAddress;
+  contact;
+}
+
+class DeliveryManager
+{
+  singleton;
+  
+  1 -> * Order orders;
+  1 -> * Ingredient ingredients;  
+  1 -> 1 Menu menu;
+  
+  after constructor {
+  	menu = new Menu();
+  }
+  // without this after construct, the constructor does not define a Menu, it only declares it
+}
+
+class Order
+{
+  autounique id;
+  Integer totalAmount;
+  boolean delivered;
+  
+  1 -> * Pizza orderedPizzas;
+  1 -> 1 Customer customer;
+}
+
+class Menu
+{
+  1 -> * Pizza pizzas;
+}
