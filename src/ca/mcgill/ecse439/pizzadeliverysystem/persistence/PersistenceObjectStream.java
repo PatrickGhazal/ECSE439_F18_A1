@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class PersistenceObjectStream {
 
-	private static String filename = "src/output";
+	private static String filename = "src/output.txt";
 
 	public static void serialize(Object object) {
 		FileOutputStream fileOut;

@@ -1,18 +1,21 @@
 package ca.mcgill.ecse439.pizzadeliverysystem.application;
 
+import ca.mcgill.ecse439.pizzadeliverysystem.controller.InvalidInputException;
+import ca.mcgill.ecse439.pizzadeliverysystem.controller.PDSController;
 import ca.mcgill.ecse439.pizzadeliverysystem.model.DeliveryManager;
 import ca.mcgill.ecse439.pizzadeliverysystem.persistence.PersistenceObjectStream;
 import ca.mcgill.ecse439.pizzadeliverysystem.view.DeliveryManagerPage;
 
 public class PDSApplication {
 	
-	private static DeliveryManager dm;
-	private static String filename = "src/output";
+	private static DeliveryManager dm = null;
+	private static String filename = "src/output.txt";
 	
 	public static void main(String[] args) {
 		// start UI
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+            	dm = getDM();
                 new DeliveryManagerPage().setVisible(true);
             }
         });

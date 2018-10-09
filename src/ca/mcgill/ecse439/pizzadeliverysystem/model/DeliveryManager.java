@@ -2,10 +2,11 @@
 /*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse439.pizzadeliverysystem.model;
+import java.io.Serializable;
 import java.util.*;
 
-// line 64 "../../../../../PDS.ump"
-public class DeliveryManager
+// line 78 "../../../../../PDS.ump"
+public class DeliveryManager implements Serializable
 {
 
   //------------------------
@@ -31,7 +32,7 @@ public class DeliveryManager
   {
     orders = new ArrayList<Order>();
     ingredients = new ArrayList<Ingredient>();
-    // line 73 "../../../../../PDS.ump"
+    // line 91 "../../../../../PDS.ump"
     menu = new Menu();
     // END OF UMPLE AFTER INJECTION
   }

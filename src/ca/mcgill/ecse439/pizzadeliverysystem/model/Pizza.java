@@ -2,10 +2,11 @@
 /*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse439.pizzadeliverysystem.model;
+import java.io.Serializable;
 import java.util.*;
 
-// line 3 "../../../../../PDS.ump"
-public class Pizza
+// line 5 "../../../../../PDS.ump"
+public class Pizza implements Serializable
 {
 
   //------------------------
@@ -26,7 +27,7 @@ public class Pizza
 
   public Pizza(String aName, int aCalorieCount, int aPrice)
   {
-    // line 12 "../../../../../PDS.ump"
+    // line 18 "../../../../../PDS.ump"
     if (aName == null || aName.trim().equals("")) {
       		throw new RuntimeException("Please provide a valid name.");
       	}
@@ -50,7 +51,7 @@ public class Pizza
   public boolean setName(String aName)
   {
     boolean wasSet = false;
-    // line 24 "../../../../../PDS.ump"
+    // line 30 "../../../../../PDS.ump"
     if (aName == null || aName.trim().equals("")) {
       		return false;
       	}
@@ -63,7 +64,7 @@ public class Pizza
   public boolean setCalorieCount(int aCalorieCount)
   {
     boolean wasSet = false;
-    // line 29 "../../../../../PDS.ump"
+    // line 35 "../../../../../PDS.ump"
     if (aCalorieCount <= 0) {
       		return false;
       	}
@@ -76,7 +77,7 @@ public class Pizza
   public boolean setPrice(int aPrice)
   {
     boolean wasSet = false;
-    // line 34 "../../../../../PDS.ump"
+    // line 40 "../../../../../PDS.ump"
     if (aPrice <= 0) {
       		return false;
       	}

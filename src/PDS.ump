@@ -1,7 +1,13 @@
 namespace ca.mcgill.ecse439.pizzadeliverysystem.model;
 
+external interface Serializable {}
+
 class Pizza
 {
+
+  depend java.io.Serializable;
+  isA Serializable;
+
   name;
   Integer calorieCount;
   Integer price;
@@ -50,12 +56,20 @@ class CustomPizza
 
 class Ingredient
 {
+
+  depend java.io.Serializable;
+  isA Serializable;  
+
   name;
   Integer price;
 }
 
 class Customer
 {
+
+  depend java.io.Serializable;
+  isA Serializable;
+
   name;
   delAddress;
   contact;
@@ -63,6 +77,10 @@ class Customer
 
 class DeliveryManager
 {
+
+  depend java.io.Serializable;
+  isA Serializable;
+
   singleton;
   
   1 -> * Order orders;
@@ -77,6 +95,10 @@ class DeliveryManager
 
 class Order
 {
+
+  depend java.io.Serializable;
+  isA Serializable;
+
   autounique id;
   Integer totalAmount;
   boolean delivered;
@@ -87,5 +109,9 @@ class Order
 
 class Menu
 {
+
+  depend java.io.Serializable;
+  isA Serializable;
+
   1 -> * Pizza pizzas;
 }

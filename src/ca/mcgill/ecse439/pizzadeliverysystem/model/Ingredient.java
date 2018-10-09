@@ -2,9 +2,10 @@
 /*This code was generated using the UMPLE 1.27.0.3728.d139ed893 modeling language!*/
 
 package ca.mcgill.ecse439.pizzadeliverysystem.model;
+import java.io.Serializable;
 
-// line 51 "../../../../../PDS.ump"
-public class Ingredient
+// line 57 "../../../../../PDS.ump"
+public class Ingredient implements Serializable
 {
 
   //------------------------

@@ -93,7 +93,7 @@ public class UpdateMenuPage extends JFrame {
 			PDSController.createMenuPizza(nameField.getText(), Integer.parseInt(calField.getText()),
 					Integer.parseInt(priceField.getText()));
 		} catch (InvalidInputException e) {
-
+			e.printStackTrace();
 		}
 		setVisible(false);
 		ovp.setVisible(true);
@@ -105,7 +105,7 @@ public class UpdateMenuPage extends JFrame {
 			PDSController.updateMenuPizza(nameField.getText(), newNameField.getText(),
 					Integer.parseInt(newCalField.getText()), Integer.parseInt(newPriceField.getText()));
 		} catch (InvalidInputException e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -113,7 +113,7 @@ public class UpdateMenuPage extends JFrame {
 		try {
 			PDSController.deleteMenuPizza(nameField.getText());
 		} catch (InvalidInputException e) {
-
+			e.printStackTrace();
 		}
 	}
 
