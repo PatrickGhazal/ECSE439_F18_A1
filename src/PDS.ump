@@ -84,7 +84,7 @@ class DeliveryManager
   singleton;
   
   1 -> * Order orders;
-  1 -> * Ingredient ingredients;  
+  1 -> * Ingredient ingredients; // all the possible ingredients that can go on a pizza, allows for customer selection
   1 -> 1 Menu menu;
   
   after constructor {
