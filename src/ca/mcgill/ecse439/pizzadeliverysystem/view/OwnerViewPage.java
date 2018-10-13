@@ -1,5 +1,7 @@
 package ca.mcgill.ecse439.pizzadeliverysystem.view;
 
+import java.awt.Color;
+
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,9 +17,11 @@ public class OwnerViewPage extends JFrame {
 	private String account = "admin", password = "admin";
 
 	// for login page
-	private JLabel loginLabel;
+	private JLabel loginLabel, errorLabel;
 	private JTextField loginAccountField, loginPasswordField;
 	private JButton loginButton;
+	
+	private String errorMessage;
 
 	// for operating page
 	private JButton viewMenuButton, updateMenuButton;
@@ -33,26 +37,31 @@ public class OwnerViewPage extends JFrame {
 	private void initComponentsLogIn() {
 
 		loginLabel = new JLabel();
+		errorLabel = new JLabel();
+		errorLabel.setForeground(Color.RED);
 		loginAccountField = new JTextField();
 		loginPasswordField = new JTextField();
 		loginButton = new JButton();
+		
+		errorMessage = "";
 
 		loginLabel.setText("Enter your username and password.");
-		loginAccountField.setText("                              ");
-		loginPasswordField.setText("                              ");
+		errorLabel.setText(errorMessage);
 		loginButton.setText("Log in");
-		
-		setSize(500, 100);
 
 		loginButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				if (correctCredentials(loginAccountField, loginPasswordField)) {
 					hasLoggedIn = true;
 					remove(loginLabel);
+					remove(errorLabel);
 					remove(loginAccountField);
 					remove(loginPasswordField);
 					remove(loginButton);
 					initComponentsOperations();
+				} else {
+					errorMessage = "Incorrect credentials !";
+					refreshData();
 				}
 			}
 		});
@@ -61,16 +70,17 @@ public class OwnerViewPage extends JFrame {
 		getContentPane().setLayout(layout);
 		
 		layout.setHorizontalGroup(layout.createSequentialGroup()
-				.addGroup(layout.createParallelGroup().addComponent(loginLabel).addComponent(loginAccountField))
-				.addGroup(layout.createParallelGroup().addComponent(loginLabel).addComponent(loginPasswordField))
-				.addGroup(layout.createParallelGroup().addComponent(loginLabel).addComponent(loginButton)));
+				.addGroup(layout.createParallelGroup().addComponent(errorLabel).addComponent(loginLabel).addComponent(loginAccountField))
+				.addComponent(loginPasswordField)
+				.addComponent(loginButton));
 		
-		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(loginLabel)
+		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(errorLabel).addComponent(loginLabel)
 				.addGroup(layout.createParallelGroup().addComponent(loginAccountField).addComponent(loginPasswordField).addComponent(loginButton))
 				);
-
-		layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[] { loginAccountField, loginPasswordField });
-		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] { loginAccountField, loginPasswordField });
+		
+		layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {loginAccountField, loginPasswordField, loginButton});
+		
+		pack();
 	}
 
 	private void initComponentsOperations() {
@@ -88,13 +98,11 @@ public class OwnerViewPage extends JFrame {
 				vmp.setVisible(true);
 			}
 		});
-		
-		final OwnerViewPage ovp = this;
 
 		updateMenuButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				setVisible(false);
-				UpdateMenuPage ump = new UpdateMenuPage(ovp);
+				UpdateMenuPage ump = new UpdateMenuPage();
 				ump.setVisible(true);
 			}
 		});
@@ -115,6 +123,13 @@ public class OwnerViewPage extends JFrame {
 		boolean validAcc = acc.getText().trim().equals(account);
 		boolean validPass = pass.getText().trim().equals(password);
 		return validAcc && validPass;
+	}
+	
+	private void refreshData() {
+		loginAccountField.setText("");
+		loginPasswordField.setText("");
+		errorLabel.setText(errorMessage);
+		pack();
 	}
 
 }

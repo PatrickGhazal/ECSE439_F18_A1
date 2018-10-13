@@ -9,6 +9,8 @@ import ca.mcgill.ecse439.pizzadeliverysystem.model.Pizza;
 
 public class ViewMenuPage extends JFrame {
 
+	private static final long serialVersionUID = -2153858275213066515L;
+	
 	private JLabel menuLabel;
 	
 	public ViewMenuPage() {

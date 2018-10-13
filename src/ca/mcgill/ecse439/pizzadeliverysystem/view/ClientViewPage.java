@@ -3,23 +3,12 @@ package ca.mcgill.ecse439.pizzadeliverysystem.view;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class ClientViewPage extends JFrame {
 	
 	private static final long serialVersionUID = 9126638650941721801L;
 	
-	private String account = "admin", password = "admin";
-	
-	// for login page
-	private JLabel loginLabel;
-	private JTextField loginAccountField, loginPasswordField;
-	private JButton loginButton;
-	
-	// for operating page
-	private JButton viewMenuButton, updateMenuButton;
+	private JButton viewMenuButton;
 	
 	public ClientViewPage() {
 		initComponents();

@@ -60,6 +60,8 @@ public class PDSController {
 				throw new InvalidInputException(e.getMessage());
 			}
 
+		} else {
+			throw new InvalidInputException("No such pizza !");
 		}
 	}
 }
